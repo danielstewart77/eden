@@ -41,3 +41,12 @@ ls -l
 sudo nano /etc/samba/smb.conf
 sudo /etc/init.d/samba restart
 sudo reboot
+ls
+sudo node server.js 
+ls
+nano package.json 
+sudo node server.js 
+npm install --save highcharts
+ls node_modules/
+npm install --save highcharts
+sudo node server.js 
