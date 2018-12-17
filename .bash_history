@@ -50,3 +50,8 @@ npm install --save highcharts
 ls node_modules/
 npm install --save highcharts
 sudo node server.js 
+git commit -a -m "got 1st gauge working, working on a better one"
+git push
+sudo node server.js 
+npm install --save jscharting
+exit

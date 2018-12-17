@@ -1,0 +1,70 @@
+<html>
+    <meta http-equiv="refresh" content="10">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="/controls/gauge.js"></script>
+    
+    <!-- Load c3.css -->
+    <link href="/c3/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <!-- <script src="/c3/d3.v5.min.js" charset="utf-8"></script> -->
+    <script src="/c3/c3.min.js"></script>
+
+
+  </head>
+  <body style="background-color:darkslategray">
+    <div id="chart"></div>
+
+    <div id="chartDiv" style="max-width: 740px;height: 300px;margin: 0px auto;">
+    
+  </body>
+
+  <script type="text/javascript">
+
+    var moisture;
+
+    var promise = $.getJSON("http://192.168.0.30/channel?channel=0");
+            promise.done(function(reading) {
+                console.log(reading);
+                moisture = reading;
+            });
+
+    var chart = c3.generate({
+        bindto: '#chart',
+        data: {
+            columns: [
+            ['data', moisture]
+            ],
+            type: 'gauge',
+        }
+    });
+
+    </script>
+
+
+</html>
+
+    <!-- angular.module('eden', ['angularjs-gauge'])
+      .controller('EdenCtrl', edenController);
+
+        edenController.$inject = [];
+        function edenController(){
+          var vm = this;
+
+          var promise = $.getJSON("http://192.168.0.30/channel?channel=0");
+          promise.done(function(reading) {
+              console.log(reading);
+              vm.moisture = reading;
+          }); -->
+          
+          <!-- // function getMoisture() {
+          //   var moisture = 0;
+          //   $.getJSON('http://192.168.0.30/channel?channel=0', function(data) {
+        
+          //     moisture = data.value;
+          //   });
+          //   return moisture;
+          // }; -->
