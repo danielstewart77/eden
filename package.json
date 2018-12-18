@@ -4,14 +4,8 @@
   "description": "greenhouse monitor",
   "main": "server.js",
   "dependencies": {
-    "angular": "^1.6.0",
-    "angularjs": "0.0.1",
-    "angularjs-gauge": "^2.2.0",
-    "define-property": "^2.0.2",
     "express": "^4.16.4",
-    "ngx-gauge": "0.0.1",
     "nodemon": "^1.18.7",
-    "pi-gpio": "^0.0.8",
     "rpio": "^1.0.11"
   },
   "devDependencies": {},

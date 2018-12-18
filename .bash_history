@@ -55,3 +55,62 @@ git push
 sudo node server.js 
 npm install --save jscharting
 exit
+sudo raspi-config
+clear
+ifconfig
+exit
+sudo node server.js 
+sudo nodemon ./server.js 
+nodemon ./server.js 
+cp eden.service /etc/systemd/system
+sudo cp eden.service /etc/systemd/system
+systemctl start eden
+exitservice 
+service 
+clear
+seexit
+exit
+cd node_modules/
+ls
+mv angular angular-fu
+mv angularjs angularjs-fu
+mv angularjs-gauge/ angularjs-gauge-fu
+ls
+mv define-property/ define-property-fu
+mv highcharts/ highcharts-fu
+mv ngx-gauge/ ngx-gauge-fu
+mv pi-gpio/ pi-gpio-fu
+rm angular
+rm angular -R
+rm angular-fu/ -R
+ls
+rm angularjs-fu/ -R
+rm angularjs-gauge-fu/ -R
+rm define-property-fu/ -R
+rm highcharts-fu/ -R
+rm ngx-gauge-fu/ -R
+ls
+rm pi-gpio-fu/ -R
+ls
+cd ..
+npm install -g nodemon
+sudo npm install -g nodemon
+sudo  -i npm install forever -g
+sudo forever start server.js
+sudo forever stop server.js
+sudo forever start server.js
+sudo crontab -u root -e
+sudo forever stop server.js
+sudo forever start /home/daniel/server.js
+sudo forever stop /home/daniel/server.js
+sudo forever start /home/daniel/server.js --port 80
+sudo forever stop /home/daniel/server.js --port 80
+sudo forever stop /home/daniel/server.js
+service eden start
+journalctl -u eden
+sudo journalctl -u eden
+systemctl start eden
+sudo journalctl -u eden
+sudo systemctl start eden
+sudo forever start /home/daniel/server.js --port 80
+sudo shutdown -h now
