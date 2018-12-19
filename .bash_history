@@ -114,3 +114,57 @@ sudo journalctl -u eden
 sudo systemctl start eden
 sudo forever start /home/daniel/server.js --port 80
 sudo shutdown -h now
+sudo forever start /home/daniel/server.js --port 80
+rm .git/index.lock 
+git add eden.service
+git commit -a -m "finished moisture gauge, attempted writing a service"
+git push
+ls /sys/bus/i2c/devices/
+cd..
+cd ..
+ls
+cd daniel/
+ls /sys/bus/
+ls /sys/bus/i2c/devices/
+sudo nano /boot/config.txt 
+sudo reboot
+sudo apt-get install motion
+sudo nano /etc/motion/motion.conf 
+sudo nano /etc/default/motion 
+sudo service motion start
+sudo service motion restart
+sudo service motion start
+sudo nano /etc/motion/motion.conf 
+sudo service motion restart
+sudo nano /sys/bus/w1/devices/28-000004b0191d/w1_slave 
+sudo nano /sys/bus/w1/devices/28-000004b0191d/w1_slave
+sudo nano /sys/bus/w1/devices/28-000004b0191d/w1_slave 
+ls
+cd /
+ls
+cd bin/
+ls
+cd ..
+ls
+cd /usr/sbin/
+ls
+cd ..
+ls
+sudo nano /etc/motion/motion.conf 
+sudo service motion restart
+sudo nano /etc/motion/motion.conf 
+sudo service motion restart
+locate apache
+sudo nano /etc/motion/motion.conf 
+sudo service motion restart
+sudo reboot
+sudo forever start /home/daniel/server.js --port 80
+sudo forever stop /home/daniel/server.js --port 80
+sudo forever start /home/daniel/server.js --port 80
+sudo service node restart
+sudo forever stop /home/daniel/server.js --port 80
+sudo nodemon server.js 
+sudo nano /etc/motion/motion.conf 
+sudo service motion restart
+ls
+sudo reboot

@@ -23,13 +23,71 @@ app.get('/channel', function (req, res){
     // value of 1st sensor - to be stored in db in device table
     var value = (Math.sqrt(331687756 - 381250 * point) - 16)/1525;
     res.status(200).json({value: value});
-    //res.send(JSON.stringify(channel_values[channel]));
  });
 
 app.get('/solve', function (req, res) {
     var point = req.query.point;
     var answer = (Math.sqrt(331687756 - 381250 * point) - 16)/1525;
     res.send(answer.toString());
+});
+
+app.get('/video', function (req, res) {
+    var dir = '/var/lib/motion'
+    var fs = require('fs'),
+    path = require('path'),
+    _ = require('underscore');
+
+    var files = fs.readdirSync(dir);
+
+    // use underscore for max()
+    //_.max(files, function (f) {
+    //    var fullpath = path.join(dir, f);
+
+        // ctime = creation time is used
+        // replace with mtime for modification time
+    res.json({src: path.join(dir, files[files.length - 1])});
+    //});
+});
+
+app.get('/temp', function (req, res){
+    try {
+        var file = require('fs');
+        //var pattern = new RegExp("(?<=t=)[0-9]*");
+        var pattern = new RegExp("(t=)[0-9]*");
+
+        file.readFile('/sys/bus/w1/devices/28-000004b0191d/w1_slave', function(err, buffer){
+            if (err){
+                console.error(err);
+            }
+
+            if (buffer)
+            {
+                // get raw strings from file
+                var rawData = buffer.toString('ascii');
+
+                // check for a match
+                if (rawData.match(pattern)){
+                    // match the temp portion of the string
+                    var tempString = rawData.match(pattern);
+                    tempString = tempString.toString();
+                    // strip the 't=' portion
+                    var len = tempString.length;
+                    var rawTemp = tempString.substring(2, len);
+                    // get C temp
+                    var tempC = parseFloat(rawTemp) / 1000.0;
+                    // convert to F temp
+                    var tempF = (tempC * 9 / 5) + 32;
+                    // round to a single decimal
+                    tempF = Math.round(tempF * 10) /10;
+
+                    //console.log(tempF);
+                    
+                    res.status(200).json({value: tempF});
+                }
+            }else {res.status(200).json({value: 0});}
+            
+        });
+    }catch(err){console.log(err);}
 });
 
  const port = 80;

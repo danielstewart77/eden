@@ -1,5 +1,5 @@
 <html>
-    <meta http-equiv="refresh" content="10">
+    <!-- <meta http-equiv="refresh" content="100"> -->
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
@@ -8,19 +8,68 @@
 
     <!-- Load d3.js and c3.js -->
     <script src="https://d3js.org/d3.v5.js"></script>
-    <!-- <script src="/c3/d3.v5.min.js" charset="utf-8"></script> -->
     <script src="/c3/c3.min.js"></script>
 
 
   </head>
   <body style="background-color:darkslategray">
     <div id="chart"></div>
-
-    <div id="chartDiv" style="max-width: 740px;height: 300px;margin: 0px auto;">
-    
+    <div id="tempChart"></div>
+    <div id="vid2"></div>
+    <div style="align-content: center">
+        <video id="edenVideo" width="320" height="240" controls>
+            <source src="" type="video/avi"> 
+            Your browser does not support the video tag.
+        </video>
+    </div>
   </body>
 
   <script type="text/javascript">
+    $("#vid2").load("http://192.168.0.28:8080");
+
+    var vidPromise = $.getJSON("http://192.168.0.28/video");
+    vidPromise.done(function(video){
+        $("#edenVideo").src = video.src;
+    });    
+
+    var tempPromise = $.getJSON("http://192.168.0.28/temp");
+    tempPromise.done(function(reading){
+        var chart = c3.generate({
+                    bindto: '#tempChart',
+                    data: {
+                        columns: [
+                        ['Temprature (F)', reading.value]
+                        ],
+                        type: 'gauge',
+                    },
+                    gauge: {
+                        label: {
+                            format: function(value, ratio) {
+                                return Math.round(value * 100) /100;
+                            },
+                            show: true // min/max labels.
+                        },
+                    min: 50, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+                    max: 100, // 100 is default
+                    units: '',
+                    width: 39 // for adjusting arc thickness
+                    },
+                    color: {
+                        // lightgreen: #90EE90
+                        // darker?green: #71c571
+                        // green: #008000
+                        // blue: #0000FF
+                        // red: #FF0000
+                        // darkorange: #F97600
+                        pattern: [ '#FF0000', '#08e108', '#0000FF'], // the three color levels for the percentage values.
+                        threshold: {
+                        //unit: 'value', // percentage is default
+                        //max: 10, // 100 is default
+                            values: [ 60, 85, 100]
+                        }
+                    },
+                });
+    }).fail(function(err){console.log(err);});
 
     var promise = $.getJSON("http://192.168.0.28/channel?channel=0");
             promise.done(function(reading) {
