@@ -168,3 +168,20 @@ sudo nano /etc/motion/motion.conf
 sudo service motion restart
 ls
 sudo reboot
+ls
+sudo nano /etc/motion/motion.conf 
+ls -l /var/lib/motion/
+sudo ls -l /var/lib/motion/
+sudo nano /etc/motion/motion.conf 
+sudo service motion restart
+ls
+sudo ls -l /var/lib/motion/
+npm install --save underscore
+sudo ls -l /var/lib/motion/
+git commit -a -m "got video working, but only with cors plugin"
+git commit
+git push
+exit
+sudo nodemon server.js 
+sudo forever start /home/daniel/server.js --port 80
+exit

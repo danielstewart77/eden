@@ -1,6 +1,7 @@
 <html>
     <!-- <meta http-equiv="refresh" content="100"> -->
   <head>
+      <title>Eden v0.1</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     <!-- Load c3.css -->
@@ -15,22 +16,22 @@
   <body style="background-color:darkslategray">
     <div id="chart"></div>
     <div id="tempChart"></div>
-    <div id="vid2"></div>
-    <div style="align-content: center">
-        <video id="edenVideo" width="320" height="240" controls>
+    <div id="vid2" style="width:2560; height:2048" width="640" height="480"></div>
+    <!-- <div style="align-content: center">
+        <video id="edenVideo" width="640" height="480" controls>
             <source src="" type="video/avi"> 
             Your browser does not support the video tag.
         </video>
-    </div>
+    </div> -->
   </body>
 
   <script type="text/javascript">
     $("#vid2").load("http://192.168.0.28:8080");
 
-    var vidPromise = $.getJSON("http://192.168.0.28/video");
-    vidPromise.done(function(video){
-        $("#edenVideo").src = video.src;
-    });    
+    // var vidPromise = $.getJSON("http://192.168.0.28/video");
+    // vidPromise.done(function(video){
+    //     $("#edenVideo").src = video.src;
+    // });    
 
     var tempPromise = $.getJSON("http://192.168.0.28/temp");
     tempPromise.done(function(reading){
@@ -61,7 +62,7 @@
                         // blue: #0000FF
                         // red: #FF0000
                         // darkorange: #F97600
-                        pattern: [ '#FF0000', '#08e108', '#0000FF'], // the three color levels for the percentage values.
+                        pattern: [ '#0000FF', '#08e108', '#FF0000'], // the three color levels for the percentage values.
                         threshold: {
                         //unit: 'value', // percentage is default
                         //max: 10, // 100 is default
