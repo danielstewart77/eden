@@ -2,12 +2,12 @@
 Description=Eden greenhouse app
 
 [Service]
-ExecStart=/home/daniel/server.js
+ExecStart=/usr/bin/nodejs/node /home/daniel/server.js
 Restart=always
 User=root
 # Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
 Group=root
-Environment=PATH=/usr/bin:/usr/local/bin
+Environment=PATH=/usr/bin/nodejs:/usr/local/bin/nodejs
 Environment=NODE_ENV=production
 WorkingDirectory=/home/daniel
 

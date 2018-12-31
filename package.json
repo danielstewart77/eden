@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.16.4",
+    "livecam": "^0.2.0",
     "nodemon": "^1.18.7",
     "rpio": "^1.0.11",
     "underscore": "^1.9.1"

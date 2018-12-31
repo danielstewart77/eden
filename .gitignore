@@ -1,0 +1,7 @@
+.wget*
+.ssh*
+.gitconfig
+.bash*
+.nano*
+.npm
+node_modules

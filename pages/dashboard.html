@@ -1,114 +1,56 @@
 <html>
-    <!-- <meta http-equiv="refresh" content="100"> -->
-  <head>
-      <title>Eden v0.1</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <body style="background-color:darkslategray;">
+    <div ng-controller="edenCtl" ng-cloak="" ng-app="edenApp" style="width: 80%; height: 80%">
+        <!-- <div>
+            <input type="checkbox" ng-model="ch0" ng-checked="true">Sensor 0</input>
+            <input type="checkbox" ng-model="ch1" ng-checked="true">Sensor 1</input>
+            <input type="checkbox" ng-model="ch2" ng-checked="false">Sensor 2</input>
+            <input type="checkbox" ng-model="ch3" ng-checked="false">Sensor 3</input>
+            <input type="checkbox" ng-model="ch4" ng-checked="false">Sensor 4</input>
+            <input type="checkbox" ng-model="ch5" ng-checked="false">Sensor 5</input>
+            <input type="checkbox" ng-model="ch6" ng-checked="false">Sensor 6</input>
+            <input type="checkbox" ng-model="ch7" ng-checked="false">Sensor 7</input>
+        </div> -->
+        
+        <md-grid-list
+        md-cols-xs="1" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="4"
+                        md-row-height-gt-md="1:1" md-row-height="1:1"
+                        md-gutter="12px" md-gutter-gt-sm="8px">
+        
+            <md-grid-tile md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+                <div  id="channel0"></div>
+
+            </md-grid-tile>
+
+            <md-grid-tile md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+                <div  id="channel1"></div>
+
+            </md-grid-tile>
+
+            <md-grid-tile md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+                <div  id="channel2"></div>
+
+            </md-grid-tile>
+
+            <md-grid-tile md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+                <div  id="channel3"></div>
+
+            </md-grid-tile>
+
+            <md-grid-tile  md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+                    <div id="tempChart"></div>
     
-    <!-- Load c3.css -->
-    <link href="/c3/c3.css" rel="stylesheet">
+            </md-grid-tile>
+            
 
-    <!-- Load d3.js and c3.js -->
-    <script src="https://d3js.org/d3.v5.js"></script>
-    <script src="/c3/c3.min.js"></script>
-
-
-  </head>
-  <body style="background-color:darkslategray">
-    <div id="chart"></div>
-    <div id="tempChart"></div>
-    <div id="vid2" style="width:2560; height:2048" width="640" height="480"></div>
-    <!-- <div style="align-content: center">
-        <video id="edenVideo" width="640" height="480" controls>
-            <source src="" type="video/avi"> 
-            Your browser does not support the video tag.
-        </video>
-    </div> -->
+            <!-- <div ng-show="ch4" id="channel4"></div>
+            <div ng-show="ch5" id="channel5"></div>
+            <div ng-show="ch6" id="channel6"></div>
+            <div ng-show="ch7" id="channel7"></div> -->
+        
+        </md-grid-list>
+        
+        
+    </div>
   </body>
-
-  <script type="text/javascript">
-    $("#vid2").load("http://192.168.0.28:8080");
-
-    // var vidPromise = $.getJSON("http://192.168.0.28/video");
-    // vidPromise.done(function(video){
-    //     $("#edenVideo").src = video.src;
-    // });    
-
-    var tempPromise = $.getJSON("http://192.168.0.28/temp");
-    tempPromise.done(function(reading){
-        var chart = c3.generate({
-                    bindto: '#tempChart',
-                    data: {
-                        columns: [
-                        ['Temprature (F)', reading.value]
-                        ],
-                        type: 'gauge',
-                    },
-                    gauge: {
-                        label: {
-                            format: function(value, ratio) {
-                                return Math.round(value * 100) /100;
-                            },
-                            show: true // min/max labels.
-                        },
-                    min: 50, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-                    max: 100, // 100 is default
-                    units: '',
-                    width: 39 // for adjusting arc thickness
-                    },
-                    color: {
-                        // lightgreen: #90EE90
-                        // darker?green: #71c571
-                        // green: #008000
-                        // blue: #0000FF
-                        // red: #FF0000
-                        // darkorange: #F97600
-                        pattern: [ '#0000FF', '#08e108', '#FF0000'], // the three color levels for the percentage values.
-                        threshold: {
-                        //unit: 'value', // percentage is default
-                        //max: 10, // 100 is default
-                            values: [ 60, 85, 100]
-                        }
-                    },
-                });
-    }).fail(function(err){console.log(err);});
-
-    var promise = $.getJSON("http://192.168.0.28/channel?channel=0");
-            promise.done(function(reading) {
-                var chart = c3.generate({
-                    bindto: '#chart',
-                    data: {
-                        columns: [
-                        ['Moisture', reading.value]
-                        ],
-                        type: 'gauge',
-                    },
-                    gauge: {
-                        label: {
-                            format: function(value, ratio) {
-                                return Math.round(value * 100) /100;
-                            },
-                            show: true // min/max labels.
-                        },
-                    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-                    max: 10, // 100 is default
-                    units: '',
-                    width: 39 // for adjusting arc thickness
-                    },
-                    color: {
-                        // lightgreen: #90EE90
-                        // darker?green: #71c571
-                        // green: #008000
-                        // blue: #0000FF
-                        // red: #FF0000
-                        // darkorange: #F97600
-                        pattern: [ '#FF0000', '#08e108', '#0000FF'], // the three color levels for the percentage values.
-                        threshold: {
-                        //unit: 'value', // percentage is default
-                        //max: 10, // 100 is default
-                            values: [ 3.5, 6.5, 10]
-                        }
-                    },
-                });
-            });
-    </script>
 </html>

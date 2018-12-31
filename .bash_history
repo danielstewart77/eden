@@ -185,3 +185,154 @@ exit
 sudo nodemon server.js 
 sudo forever start /home/daniel/server.js --port 80
 exit
+gst-launch-1.0 --version
+sudo apt-get install gstreamer
+sudo apt-get install gstreamer1.0
+sudo apt-get install gstreamer1.0 fix-dependencies
+sudo apt-get clean
+sudo apt-get autoclean
+sudo apt-get install gstreamer1.0
+sudo nano /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install gstreamer1.0
+sudo apt-get clean
+sudo apt-get autoclean
+sudo apt-get install gstreamer1.0
+sudo apt-get install gstreamer-tools 
+sudo apt-get install gstreamer1.0
+sudo apt-get install --fix-broken
+sudo apt-get install gstreamer1.0
+sudo apt-get install gstreamer0.10
+sudo service motion restart
+gstreamer --version
+sudo apt-get install remove motion
+sudo apt-get remove motion
+sudo apt-get autoremove 
+npm install --save livecam
+mkdir gstreamer
+cd gstreamer/
+git clone git://anongit.freedesktop.org/gstreamer/gst-omx
+cd gst-omx/
+ls
+git checkout 1.10
+./autogen.sh --with-omx-header-path=/opt/vc/include/IL --with-omx-target=rpi
+sudo apt-get install autoconf
+./autogen.sh --with-omx-header-path=/opt/vc/include/IL --with-omx-target=rpi
+cd ..
+rm -R gstreamer/
+sudo forever start /home/daniel/server.js --port 80
+sudo forever stop /home/daniel/server.js --port 80
+sudo node server.js 
+exit
+sudo node server.js 
+sudo apt-get install gstreamer0.10-plugins-good
+sudo node server.js 
+gst-launch
+sudo reboot
+df
+exit
+ifconfig
+sudo raspi-config
+exit
+ls
+ls 
+mkdir video
+ls
+gst-launch -v -v4l2src device=/dev/video0 ! video/x-raw-yuv,width=320,height=240 ! jpegenc ! filesink location=/home/daniel/video/cam.jpeg
+gst-launch -v v4l2src device=/dev/video0 ! video/x-raw-yuv,width=320,height=240 ! jpegenc ! filesink location=/home/daniel/video/cam.jpeg
+sudo gst-launch -v v4l2src device=/dev/video0 ! video/x-raw-yuv,width=320,height=240 ! jpegenc ! filesink location=/home/daniel/video/cam.jpeg
+sudo gst-launch-0.10 -v v4l2src device=/dev/video0 ! video/x-raw-yuv,width=320,height=240 ! jpegenc ! filesink location=/home/daniel/video/cam.jpeg
+sudo apt-get update
+sudo apt-get upgrade
+sudo gst-launch-0.10 -v v4l2src device=/dev/video0 ! video/x-raw-yuv,width=320,height=240 ! jpegenc ! filesink location=/home/daniel/video/cam.jpeg
+sudo reboot
+sudo forever stop /home/daniel/server.js --port 80
+sudo forever start /home/daniel/server.js --port 80
+sudo forever stop /home/daniel/server.js --port 80
+sudo node server.js 
+cd /
+ls
+cd /etc/
+ls
+sudo apt-get install locate
+locate v4l
+locate
+locate --help
+locate v4lsrc
+cd ..
+locate v4lsrc
+locate v4l
+locate v4l*
+locate daniel
+locate -m
+ls
+cd lib/
+ls
+cd ..
+ls
+cd /var/
+ls
+cd ..
+ls
+sudo apt-get remove locate
+cd /home/daniel/
+ls
+sudo node server.js 
+kdir video
+sudo node server.js 
+ls
+ls video/
+sudo node server.js 
+ls video/
+ls -l video/
+sudo node server.js 
+rm video/cam.jpeg 
+sudo node server.js 
+sudo node server.js 
+sudo gst-launch-0.10 -v v4l2src device=/dev/video0 ! video/x-raw-yuv,width=320,height=240 ! jpegenc ! filesink location=/home/daniel/video/cam.jpeg
+sudo gst-launch-0.10 -v v4l2src device=/dev/video0 ! video/x-raw-yuv,width=320,height=240 ! jpegenc ! filesink location=/home/daniel/video/cam.mpeg
+sudo gst-launch-0.10 -v v4l2src device=/dev/video0 ! video/x-raw-yuv,width=320,height=240 ! mpegenc ! filesink location=/home/daniel/video/cam.mpeg
+sudo gst-launch-0.10 -v v4l2src device=/dev/video0 ! mp4mux name=mux ! filesink location=/home/daniel/video/cam.mp4
+sudo reboot
+sudo node server.js 
+ls
+ls -l
+ls -l controls/
+ls -l css/
+sudo node server.js 
+sudo shoutdown -h now
+sudo shutdown -h now
+sudo node server.js 
+sudo forever start /home/daniel/server.js --port 80
+sudo node server.js 
+sudo forever stop /home/daniel/server.js --port 80
+sudo node server.js 
+service eden start
+sudo service eden start
+sudo service eden stop
+sudo forever stop /home/daniel/server.js --port 80
+sudo forever start /home/daniel/server.js --port 80
+sudo forever stop /home/daniel/server.js --port 80
+sudo journalctl -u eden.service
+ls /usr/bin/nodejs 
+ls -l /usr/bin/nodejs 
+ls -l /usr/bin/node
+ln -s /usr/bin/nodejs /usr/bin/node
+sudo nano /etc/systemd/system/eden.service 
+ls -l /usr/bin/node
+sudo journalctl -u eden.service
+ls -l /usr/bin/node
+ls -l /usr/bin/node/
+ln -s /usr/bin/nodejs /usr/bin/node
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+sudo cp /usr/bin/nodejs * /usr/bin/node
+sudo cp eden.service /etc/systemd/system/
+sudo journalctl -u eden.service
+sudo cp eden.service /etc/systemd/system/
+sudo journalctl -u eden.service
+sudo cp eden.service /etc/systemd/system/
+sudo journalctl -u eden.service
+sudo cp eden.service /etc/systemd/system/
+sudo journalctl -u eden.service
+sudo service eden start
+sudo node server.js 

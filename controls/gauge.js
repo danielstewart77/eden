@@ -1,24 +1,81 @@
-function gaugeChart(DivId, temp) {
+function tempGauge(DivId){
+  var tempPromise = $.getJSON("/temp");
+    tempPromise.done(function(reading){
+        var chart = c3.generate({
+                    bindto: DivId,
+                    data: {
+                        columns: [
+                        ['Temprature (F)', reading.value]
+                        ],
+                        type: 'gauge',
+                    },
+                    gauge: {
+                        label: {
+                            format: function(value, ratio) {
+                                return Math.round(value * 100) /100;
+                            },
+                            show: true // min/max labels.
+                        },
+                    min: 50, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+                    max: 100, // 100 is default
+                    units: '',
+                    width: 39 // for adjusting arc thickness
+                    },
+                    color: {
+                        // lightgreen: #90EE90
+                        // darker?green: #71c571
+                        // green: #008000
+                        // blue: #0000FF
+                        // red: #FF0000
+                        // darkorange: #F97600
+                        pattern: [ '#0000FF', '#08e108', '#FF0000'], // the three color levels for the percentage values.
+                        threshold: {
+                        //unit: 'value', // percentage is default
+                        //max: 10, // 100 is default
+                            values: [ 60, 85, 100]
+                        }
+                    },
+                });
+    }).fail(function(err){console.log(err);});
+}
 
-  //console.log("Chart got data value: " + temp);
-
-    var data = google.visualization.arrayToDataTable([
-      ['Label', 'Value'],
-      ['Dryness', temp]
-    ]);
-
-    var options = {
-      redColor: '#ff0000',
-      redFrom: 0, redTo: 3.5,
-      greenFrom: 3.5, greenTo: 7,
-      yellowColor: '#0000ff',
-      yellowFrom: 7, yellowTo: 10,
-      minorTicks: 5,
-      max: 10,
-      min: 0,
-    };
-
-    var chart = new google.visualization.Gauge(document.getElementById(DivId));
-
-    chart.draw(data, options);
+function moistGauge(DivId, channel, label){
+    var promise = $.getJSON("/channel?channel=" + channel);
+    promise.done(function(reading) {
+        var chart = c3.generate({
+            bindto: DivId,
+            data: {
+                columns: [
+                [label + ' Moisture', reading.value]
+                ],
+                type: 'gauge',
+            },
+            gauge: {
+                label: {
+                    format: function(value, ratio) {
+                        return Math.round(value * 100) /100;
+                    },
+                    show: true // min/max labels.
+                },
+            min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+            max: 10, // 100 is default
+            units: '',
+            width: 39 // for adjusting arc thickness
+            },
+            color: {
+                // lightgreen: #90EE90
+                // darker?green: #71c571
+                // green: #008000
+                // blue: #0000FF
+                // red: #FF0000
+                // darkorange: #F97600
+                pattern: [ '#FF0000', '#08e108', '#0000FF'], // the three color levels for the percentage values.
+                threshold: {
+                //unit: 'value', // percentage is default
+                //max: 10, // 100 is default
+                    values: [ 3.5, 6.5, 10]
+                }
+            },
+        });
+    }).fail(function(err){console.log(err);});
 }
