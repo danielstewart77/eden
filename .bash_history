@@ -168,6 +168,7 @@ sudo nano /etc/motion/motion.conf
 sudo service motion restart
 ls
 sudo reboot
+<<<<<<< HEAD
 ls
 sudo nano /etc/motion/motion.conf 
 ls -l /var/lib/motion/
@@ -343,3 +344,5 @@ sudo service eden status
 exit
 nano server.js 
 sudo node server.js 
+=======
+>>>>>>> parent of e1fb41f... removed video stram that's not working, fixed temp colors, added title
