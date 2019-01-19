@@ -336,3 +336,10 @@ sudo cp eden.service /etc/systemd/system/
 sudo journalctl -u eden.service
 sudo service eden start
 sudo node server.js 
+sudo nano /etc/init.d/node
+sudo mv /etc/init.d/node /etc/init.d/eden
+sudo service eden start
+sudo service eden status
+exit
+nano server.js 
+sudo node server.js 

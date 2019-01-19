@@ -4,6 +4,15 @@ var express = require('express');
 var io = require('./comm/io.js');
 var app = express();
 
+//var MongoClient = require('mongodb').MongoClient;
+//var url = "mongodb://localhost:27017/edendb";
+
+//MongoClient.connect(url, function(err, db) {
+//  if (err) throw err;
+//  console.log("Database created!");
+//  db.close();
+//});
+
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -36,8 +45,8 @@ app.get('/channel', function (req, res){
  });
 
 app.get('/temp', function (req, res){
-    var tempF = io.getTemp();
-    console.log(tempF);
+    var file = require('fs');
+    var tempF = io.getTemp(file);
     res.status(200).json({value: tempF});
 });
 

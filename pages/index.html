@@ -30,8 +30,8 @@
   <!-- <div ng-include="'/login.html'" ng-if="!enterprise"></div>
   <div ng-if="enterprise"> -->
   
-    <md-toolbar class="dimGrey">
-        <div class="md-toolbar-tools dimGrey">
+    <md-toolbar class="dimGrey" style="height:80px">
+        <div class="md-toolbar-tools dimGrey" style="height:80px">
           <md-button class="btn1" ng-click="showMenu('true')">
             Menu
               <md-icon md-svg-icon="img/gear.svg"></md-icon>
@@ -47,7 +47,7 @@
     <section layout="row" flex md-theme="customTheme">
 
         <md-sidenav class="md-sidenav-left" 
-          md-is-locked-open="Menu"
+          md-is-locked-open="menuVisible"
           md-disable-backdrop md-whiteframe="4">
     
           <md-toolbar class="md-primary">
@@ -68,26 +68,24 @@
           </md-content>
     
         </md-sidenav>
-
-        <div ng-if="template" ng-include="'pages/' + template + '.html'" flex></div>
-        
-
   </section>
+
+  <div ng-if="template" ng-include="'pages/' + template + '.html'" flex></div>
       
   </div>
   <script>
     angular.module('eden', ['ngMaterial']).controller('edenCtl', function ($scope) {
         
-        $scope.Menu = true;
+        $scope.menuVisible = false;
         $scope.template = 'dashboard';
 
         $scope.showMenu = () => {
             //toggle
-            if ($scope.Menu == true){
-                $scope.Menu = false;
+            if ($scope.menuVisible == true){
+                $scope.menuVisible = false;
             }
             else{
-                $scope.Menu = true;
+                $scope.menuVisible = true;
             }
         };
 
@@ -95,18 +93,19 @@
             if (template){
                 //pouchdb.find(type, $scope);
                 $scope.template = template;
-                $scope.
-                Menu = false;
+                $scope.menuVisible = false;
             }
 
-            if (template == 'dashboard'){
+            
+        };
+
+        if ($scope.template == 'dashboard'){
                 moistGauge('#channel0', 0, 'Basil 0');
-                moistGauge('#channel1', 1, 'Basil 1');
+                moistGauge('#channel1', 1, 'Habanero');
                 moistGauge('#channel2', 2, 'Basil 2');
                 moistGauge('#channel3', 3, 'Basil 3');
                 tempGauge('#tempChart');
             }
-        };
 
     }).config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('customTheme')

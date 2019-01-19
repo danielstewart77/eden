@@ -47,42 +47,30 @@ function read_channels(rpio){
 }
 
 exports.getTemp = () => {
+
     var file = require('fs');
-    //var pattern = new RegExp("(?<=t=)[0-9]*");
+    var text = file.readFileSync('/sys/bus/w1/devices/28-000004b0191d/w1_slave','ascii');
     var pattern = new RegExp("(t=)[0-9]*");
 
-    var tempF = 0;
+    if (text)
+    {
 
-    return file.readFile('/sys/bus/w1/devices/28-000004b0191d/w1_slave', function(err, buffer){
-        if (err){
-            console.error(err);
-            return 0;
+        // check for a match
+        if (text.match(pattern)){
+            // match the temp portion of the string
+            var tempString = text.match(pattern);
+            tempString = tempString.toString();
+            // strip the 't=' portion
+            var len = tempString.length;
+            var rawTemp = tempString.substring(2, len);
+            // get C temp
+            var tempC = parseFloat(rawTemp) / 1000.0;
+            // convert to F temp
+            var tempF = (tempC * 9 / 5) + 32;
+            // round to a single decimal
+            tempF = Math.round(tempF * 10) /10;
+            return tempF;
         }
-
-        if (buffer)
-        {
-            // get raw strings from file
-            var rawData = buffer.toString('ascii');
-
-            // check for a match
-            if (rawData.match(pattern)){
-                // match the temp portion of the string
-                var tempString = rawData.match(pattern);
-                tempString = tempString.toString();
-                // strip the 't=' portion
-                var len = tempString.length;
-                var rawTemp = tempString.substring(2, len);
-                // get C temp
-                var tempC = parseFloat(rawTemp) / 1000.0;
-                // convert to F temp
-                tempF = (tempC * 9 / 5) + 32;
-                // round to a single decimal
-                tempF = Math.round(tempF * 10) /10;
-
-                return tempF;
-            }
-        }
-        
-    });
-    
-};
+    }
+    else return 0;
+}
